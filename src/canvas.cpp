@@ -86,9 +86,9 @@ void Canvas::bresenhamLine(Vertex a, Vertex b){
 }
 
    
-void Canvas::drawHighLine(Vertex a, Vertex b){  //also the drawHighLine
+void Canvas::drawHighLine(Vertex a, Vertex b){  
    int x = a.x;
-   int w = b.x -a.x;   //CHANGE CAPITAL WORD TO LOWERCASE
+   int w = b.x -a.x;   
    int h = b.y -a.y;
    int dx = 1;
 
@@ -150,7 +150,7 @@ void Canvas::drawHighLine(Vertex a, Vertex b){  //also the drawHighLine
 
 
 void Canvas::drawTriangle(Vertex a, Vertex b, Vertex c) {
-   int xMin = min(min(a.x, b.x), c.x);
+      int xMin = min(min(a.x, b.x), c.x);
     int xMax = max(max(a.x, b.x), c.x);
     int yMin = min(min(a.y, b.y), c.y);
     int yMax = max(max(a.y, b.y), c.y);
