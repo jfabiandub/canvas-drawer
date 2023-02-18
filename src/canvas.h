@@ -1,7 +1,7 @@
 /*-----------------------------------------------
- * Author:
- * Date:
- * Description:
+ * Author: Jenifer Fabian Dubon
+ * Date: Feb 17,2023
+ * Description: Program that can draw lines and triangles
  ----------------------------------------------*/
 
 #ifndef canvas_H_
@@ -14,6 +14,14 @@
 namespace agl
 {
    enum PrimitiveType {UNDEFINED, LINES, TRIANGLES};
+   
+   struct Vertex{
+      int x;   //column
+      int y;   //row
+      Pixel color;
+   };
+
+   
    class Canvas
    {
    public:
@@ -47,7 +55,23 @@ namespace agl
       void background(unsigned char r, unsigned char g, unsigned char b);
 
    private:
-      Image _canvas;
+      Image _canvas; //image
+      Pixel currentCol;
+      PrimitiveType myPrimType;
+      std:: vector<Vertex> myVertices;
+
+      //draws the line from a to b
+      void bresenhamLine(Vertex a, Vertex b);
+
+      //function to draw high line
+      void drawHighLine(Vertex a, Vertex);
+
+      //function to draw low line
+      void drawLowLine(Vertex a, Vertex b);
+
+      //draw a triabgle with the 3 vertices
+      void drawTriangle(Vertex a, Vertex b, Vertex c);
+
    };
 }
 
