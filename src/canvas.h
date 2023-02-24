@@ -54,6 +54,8 @@ namespace agl
       // Fill the canvas with the given background color
       void background(unsigned char r, unsigned char g, unsigned char b);
 
+
+      //sets radius for circle
       void setRad(int radius);
 
       //draws Rose;
@@ -68,9 +70,7 @@ namespace agl
       PrimitiveType myPrimType;
       std:: vector<Vertex> myVertices;
       int _radius;
-      int _center;
-      int _width;
-      int _height;
+   
 
       //draws the line from a to b
       void bresenhamLine(Vertex a, Vertex b);
@@ -87,13 +87,7 @@ namespace agl
       //draw a circle with given position and radius
       void drawCircle(Vertex x, int a);
 
-      //void Canvas:: setRad(int radius);
 
-      //draw a Rectangle with given center, width and height
-      void drawRectangle(int center, int width, int height);
-
-      //draws a rose 
-     // void drawRose(Vertex center, int numPetals, int radius);
    };
 }
 

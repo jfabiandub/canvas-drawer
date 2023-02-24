@@ -41,11 +41,6 @@ void Canvas::end(){
          drawCircle(myVertices[i], _radius);
       }
    }
-   else if(myPrimType == RECTANGLES && myVertices.size() % 5==0){
-      for(int i = 0; i< myVertices.size(); i+=5){
-         drawRectangle(_center, _width, _height);
-      }
-   }
    myPrimType = UNDEFINED;   
    myVertices.clear();          
 
@@ -219,10 +214,6 @@ void Canvas:: drawCircle(Vertex p, int r){
 
 void Canvas:: setRad(int radius){
    this->_radius = radius;
-}
-
-void Canvas:: drawRectangle(int center, int width, int height){
-
 }
 
 void Canvas:: drawRose(Vertex center, int numPetals, int radius){
