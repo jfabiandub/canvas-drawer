@@ -35,6 +35,17 @@ void Canvas::end(){
          drawTriangle(myVertices[i], myVertices[i + 1], myVertices[i + 2]);
       }
    }
+   else if(myPrimType == CIRCLES && myVertices.size() % 4==0){
+      //int radius;
+      for(int i = 0; i< myVertices.size(); i+=4){
+         drawCircle(myVertices[i], _radius);
+      }
+   }
+   else if(myPrimType == RECTANGLES && myVertices.size() % 5==0){
+      for(int i = 0; i< myVertices.size(); i+=5){
+         drawRectangle(_center, _width, _height);
+      }
+   }
    myPrimType = UNDEFINED;   
    myVertices.clear();          
 
@@ -100,6 +111,9 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
    int F = (2 * w) - h;
 
    for(int y = a.y; y <= b.y; y++){
+      if(y > h){
+      h = h-1;
+      }
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
       temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
@@ -130,6 +144,9 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
 
    int F = (2 * H) - W;
    for(int x = a.x; x <= b.x; x++){
+      if(x > W){
+      W = W-1;
+      } 
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
       temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
@@ -150,10 +167,10 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
 
 
 void Canvas::drawTriangle(Vertex a, Vertex b, Vertex c) {
-      int xMin = min(min(a.x, b.x), c.x);
-    int xMax = max(max(a.x, b.x), c.x);
-    int yMin = min(min(a.y, b.y), c.y);
-    int yMax = max(max(a.y, b.y), c.y);
+   int xMin = min(min(a.x, b.x), c.x);
+   int xMax = max(max(a.x, b.x), c.x);
+   int yMin = min(min(a.y, b.y), c.y);
+   int yMax = max(max(a.y, b.y), c.y);
 
   for (int y = yMin; y < yMax; y++) {
     for (int x = xMin; x < xMax; x++) {
@@ -177,6 +194,42 @@ void Canvas::drawTriangle(Vertex a, Vertex b, Vertex c) {
     }
   }
 }
+
+void Canvas:: drawCircle(Vertex p, int r){
+   /* find the boundaries of the circle*/
+   int xmin = p.x - r;
+   int ymin = p.y -r;
+   int xmax = p.x + r;
+   int ymax = p.y + r;
+
+   for(int i = xmin; i<=xmax; i++){
+      for(int j = ymin; j<=ymax; j++){
+         int distance = sqrt((i- p.x)*(i-p.x) + (j- p.y)* (j - p.y));
+         
+         Pixel temp= currentCol;
+
+         if(distance <= r){
+            _canvas.set(i, j, temp);
+         }
+      }
+   }
+}
+
+void Canvas:: drawRectangle(int center, int width, int height){
+   
+
+}
+
+/*options
+Support both filled shapes and outlined shapes (to make outlines of figures)
+Support alpha blending -similar to the image alpha blending ?
+make it easy for users to specify gradients (to make pretty cool colors for figures?)
+*/
+
+
+
+
+
 
 
 
