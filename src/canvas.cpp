@@ -112,7 +112,7 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
 
    for(int y = a.y; y <= b.y; y++){
       if(y > h){
-      h = h-1;
+      y = y-1;
       }
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
@@ -145,7 +145,7 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
    int F = (2 * H) - W;
    for(int x = a.x; x <= b.x; x++){
       if(x > W){
-      W = W-1;
+      x= x-1;
       } 
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
