@@ -64,9 +64,5 @@ int main(int argc, char** argv)
    drawer.vertex(10, 10);
    drawer.end();
    drawer.save("quad.png");
-<<<<<<< HEAD
-=======
-
->>>>>>> 51452441b6daf9ea3bb1338619eedf049522a697
    return 0;
 }
