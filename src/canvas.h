@@ -54,6 +54,14 @@ namespace agl
       // Fill the canvas with the given background color
       void background(unsigned char r, unsigned char g, unsigned char b);
 
+      void setRad(int radius);
+
+      //draws Rose;
+      void drawRose(Vertex center, int numPetals, int radius);
+
+
+
+
    private:
       Image _canvas; //image
       Pixel currentCol;
@@ -79,8 +87,13 @@ namespace agl
       //draw a circle with given position and radius
       void drawCircle(Vertex x, int a);
 
+      //void Canvas:: setRad(int radius);
+
       //draw a Rectangle with given center, width and height
       void drawRectangle(int center, int width, int height);
+
+      //draws a rose 
+     // void drawRose(Vertex center, int numPetals, int radius);
    };
 }
 

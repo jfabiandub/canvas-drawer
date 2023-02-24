@@ -35,9 +35,9 @@ void Canvas::end(){
          drawTriangle(myVertices[i], myVertices[i + 1], myVertices[i + 2]);
       }
    }
-   else if(myPrimType == CIRCLES && myVertices.size() % 4==0){
+   else if(myPrimType == CIRCLES && myVertices.size() !=0){
       //int radius;
-      for(int i = 0; i< myVertices.size(); i+=4){
+      for(int i = 0; i< myVertices.size(); i++){
          drawCircle(myVertices[i], _radius);
       }
    }
@@ -111,9 +111,9 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
    int F = (2 * w) - h;
 
    for(int y = a.y; y <= b.y; y++){
-      if(y > h){
-      y = y-1;
-      }
+     // if(y > h){
+      //y = y-1;
+      //}
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
       temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
@@ -144,9 +144,10 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
 
    int F = (2 * H) - W;
    for(int x = a.x; x <= b.x; x++){
-      if(x > W){
+    /* if(x > W){
       x= x-1;
       } 
+      */
       float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
       Pixel temps; 
       temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
@@ -201,24 +202,53 @@ void Canvas:: drawCircle(Vertex p, int r){
    int ymin = p.y -r;
    int xmax = p.x + r;
    int ymax = p.y + r;
+   r = this->_radius;
 
    for(int i = xmin; i<=xmax; i++){
       for(int j = ymin; j<=ymax; j++){
          int distance = sqrt((i- p.x)*(i-p.x) + (j- p.y)* (j - p.y));
          
-         Pixel temp= currentCol;
+        // Pixel temp= currentCol;
 
          if(distance <= r){
-            _canvas.set(i, j, temp);
+            _canvas.set(i, j, currentCol);
          }
       }
    }
 }
 
+void Canvas:: setRad(int radius){
+   this->_radius = radius;
+}
+
 void Canvas:: drawRectangle(int center, int width, int height){
-   
 
 }
+
+void Canvas:: drawRose(Vertex center, int numPetals, int radius){
+   double a = radius;
+   double k= numPetals;
+   double step = 0.01;
+
+   begin(LINES);
+   double theta;
+   for( theta = 0; theta<2 *M_PI; theta +=step ){
+      double x = a * cos(k* theta) * cos(theta);
+      double y = a * cos(k * theta) * sin(theta);
+
+      vertex(center.x + x, center.y + y);
+      vertex(center.x - x, center.y - y);
+   }
+   end();
+}
+
+
+
+
+
+
+
+
 
 /*options
 Support both filled shapes and outlined shapes (to make outlines of figures)
