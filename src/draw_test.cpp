@@ -21,7 +21,7 @@ int main(int argc, char** argv)
    drawer.color(255, 255, 255);
    test_line(drawer, 0, 50, 100, 50, "horizontal-line.png");
    test_line(drawer, 50, 0, 50, 100, "vertical-line.png");
-   test_line(drawer, 0, 0, 100, 100, "diagonal-line-1.png"); // slope = 1
+ /*  test_line(drawer, 0, 0, 100, 100, "diagonal-line-1.png"); // slope = 1
    test_line(drawer, 25, 10, 75, 25,  "h-lessthan-w-line-1.png"); // slope H < W
    test_line(drawer, 25, 25, 75, 75,  "w-lessthan-h-line-1.png"); // slope W < H
    test_line(drawer, 0, 100, 100, 0, "diagonal-line-2.png"); // slope H < W
@@ -64,8 +64,12 @@ int main(int argc, char** argv)
    drawer.vertex(10, 10);
    drawer.end();
    drawer.save("quad.png");
+<<<<<<< HEAD
+*/
+=======
 
    
 
+>>>>>>> d13ad1ac6c789d3c26ad3795e59078c5e9fa4f1c
    return 0;
 }
