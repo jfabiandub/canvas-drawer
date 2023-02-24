@@ -13,7 +13,7 @@
 
 namespace agl
 {
-   enum PrimitiveType {UNDEFINED, LINES, TRIANGLES};
+   enum PrimitiveType {UNDEFINED, LINES, TRIANGLES, CIRCLES, RECTANGLES};
    
    struct Vertex{
       int x;   //column
@@ -59,6 +59,10 @@ namespace agl
       Pixel currentCol;
       PrimitiveType myPrimType;
       std:: vector<Vertex> myVertices;
+      int _radius;
+      int _center;
+      int _width;
+      int _height;
 
       //draws the line from a to b
       void bresenhamLine(Vertex a, Vertex b);
@@ -69,9 +73,14 @@ namespace agl
       //function to draw low line
       void drawLowLine(Vertex a, Vertex b);
 
-      //draw a triabgle with the 3 vertices
+      //draw a triangle with the 3 vertices
       void drawTriangle(Vertex a, Vertex b, Vertex c);
 
+      //draw a circle with given position and radius
+      void drawCircle(Vertex x, int a);
+
+      //draw a Rectangle with given center, width and height
+      void drawRectangle(int center, int width, int height);
    };
 }
 
