@@ -70,6 +70,11 @@ namespace agl
       PrimitiveType myPrimType;
       std:: vector<Vertex> myVertices;
       int _radius;
+      /*
+      int _width;
+      int _height;
+      */
+
    
 
       //draws the line from a to b

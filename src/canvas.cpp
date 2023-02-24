@@ -9,6 +9,10 @@ using namespace agl;
 Canvas::Canvas(int w, int h) : _canvas(w, h){
    Image image(w ,h);
    this->_canvas = image;
+   
+  /*this->_width = w;
+  this->_height = h;
+  */
 }
 
 Canvas::~Canvas(){ 
@@ -93,6 +97,15 @@ void Canvas::bresenhamLine(Vertex a, Vertex b){
 
    
 void Canvas::drawHighLine(Vertex a, Vertex b){  
+   /*
+   if(a.x <0 || a.x >= _width || a.y <0 || a.y >= _height){
+      return;
+   }
+   if(b.x <0 || b.x >=_width || b.y<0 || b.y >= _height){
+      return;
+   }
+   */
+
    int x = a.x;
    int w = b.x -a.x;   
    int h = b.y -a.y;
@@ -106,15 +119,15 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
    int F = (2 * w) - h;
 
    for(int y = a.y; y <= b.y; y++){
-     // if(y > h){
-      //y = y-1;
-      //}
-      float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
-      Pixel temps; 
-      temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
-      temps.g = myVertices[0].color.g * (1 - t) + myVertices[1].color.g * t;
-      temps.b = myVertices[0].color.b * (1 - t) + myVertices[1].color.b * t;
-      _canvas.set(y,x,temps);
+      if(y>= 0 && y< _canvas.height()){
+         float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
+         Pixel temps; 
+         temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
+         temps.g = myVertices[0].color.g * (1 - t) + myVertices[1].color.g * t;
+         temps.b = myVertices[0].color.b * (1 - t) + myVertices[1].color.b * t;
+         _canvas.set(y,x,temps);
+      }
+   
 
       if(F > 0){
          x += dx;
@@ -139,16 +152,14 @@ void Canvas::drawHighLine(Vertex a, Vertex b){
 
    int F = (2 * H) - W;
    for(int x = a.x; x <= b.x; x++){
-    /* if(x > W){
-      x= x-1;
-      } 
-      */
-      float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
-      Pixel temps; 
-      temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
-      temps.g = myVertices[0].color.g * (1 - t) + myVertices[1].color.g * t;
-      temps.b = myVertices[0].color.b * (1 - t) + myVertices[1].color.b * t;
-      _canvas.set(y,x,temps);
+      if(x >= 0 && x< _canvas.width()){
+         float t = sqrt(pow(myVertices[0].x - x, 2) + pow(myVertices[0].y - y, 2))/sqrt(pow(myVertices[1].x - x, 2) + pow(myVertices[1].y - myVertices[0].y, 2));
+         Pixel temps; 
+         temps.r = myVertices[0].color.r * (1 - t) + myVertices[1].color.r * t;
+         temps.g = myVertices[0].color.g * (1 - t) + myVertices[1].color.g * t;
+         temps.b = myVertices[0].color.b * (1 - t) + myVertices[1].color.b * t;
+         _canvas.set(y,x,temps);
+      }
 
       if(F > 0){
          y += dy;
