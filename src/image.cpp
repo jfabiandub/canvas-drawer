@@ -38,7 +38,7 @@ Image::Image(int width, int height)  {
    myHeight = height;
    numChannels = 3;
    myData = new  Pixel[width * height];
-   isloaded = false;
+   //isloaded = false;
   // myData = NULL;
 }
 
@@ -48,7 +48,7 @@ Image::Image(const Image& orig) {
    numChannels= orig.numChannels; 
    myData = new Pixel[myWidth * myHeight];
    memcpy(myData, orig.myData, sizeof(Pixel)* myWidth * myHeight);
-   isloaded = false;
+   //isloaded = false;
 
 }
 
@@ -57,22 +57,25 @@ Image& Image::operator=(const Image& orig) {
     return *this;
   }
   if(myData !=NULL){
-   cleanUp();
+   delete[] myData;
+   myData =NULL;
+
   }
-   myData =  orig.myData;
+   //myData =  orig.myData;
    myWidth = orig.width();
    myHeight = orig.height();
    numChannels = orig.numChannels;
    myData = new struct Pixel[myWidth * myHeight];
    memcpy(myData, orig.myData, sizeof(Pixel)* myWidth * myHeight);
-   isloaded = false;
+   //isloaded = false;
 
   return *this;
 }
 
 Image::~Image() {
  //free existing memory 
- cleanUp();
+ //cleanUp();
+ delete[] myData;
  
 }
 
@@ -96,13 +99,14 @@ void Image::set(int width, int height, unsigned char* data) {
    myWidth = width;
    myHeight = height;
    if(myData !=NULL){
-      cleanUp();
+      delete[] myData;
+      myData = NULL;
    }
    myData = new struct Pixel[myWidth * myHeight];
    memcpy(myData, (Pixel *) data, sizeof(Pixel)* myWidth * myHeight);
 }
 
-
+/*
 void Image::cleanUp(){
  if(isloaded == true){
    stbi_image_free(myData);
@@ -113,23 +117,43 @@ void Image::cleanUp(){
  isloaded = false;
  myData=NULL;
 }
+*/
 
 
 bool Image::load(const std::string& filename, bool flip) {
-   int x;
-   int y;
+   //int x;
+   //int y;
 
-   myData = (Pixel *) (stbi_load(filename.c_str(), &x , &y, &numChannels, 3));
    if(myData !=NULL){
-       myWidth = x;
-       myHeight = y;
-       isloaded = true;
-      return true;
+      delete[] myData;
+     myData = NULL;
    }
-   else{
-   return false;
+
+
+   Pixel* newData = (Pixel *) (stbi_load(filename.c_str(), &myWidth , &myHeight, &numChannels, 3));
+   /*if(myData !=NULL){
+      delete[] myData;
+      // myWidth = x;
+      // myHeight = y;
+      // isloaded = true;
+     // return true;
+     myData = NULL
    }
-   isloaded = true;
+   //else{
+   //return false;
+   //}
+   //isloaded = true;
+   */
+    if(newData != NULL){
+     myData = new Pixel[myWidth * myHeight];
+     memcpy(myData, newData, sizeof(Pixel)* myWidth * myHeight);
+     stbi_image_free(newData);
+     return true;
+  }
+  else{
+     return false;
+  }
+
 }
 
 
