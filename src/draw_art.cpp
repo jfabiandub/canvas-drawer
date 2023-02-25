@@ -33,6 +33,13 @@ int main(int argc, char** argv)
    drawer.end();
    drawer.save("triangle.png");
 
+   //test pentagon
+   Canvas st(500, 500);
+   st.background(255, 255, 255);
+   drawer.color(255,97,116);
+   st.drawPentagon(250, 250, 100);
+   st.save("pentagon.png");
+
 
    //draaws a rose
    drawer.background(255, 255, 255);
@@ -192,7 +199,9 @@ int main(int argc, char** argv)
          int height = rand() % 100 + 50;
          abs.color(red, green, blue);
          abs.drawRectangle(x, y, width, height);
+         
       } 
+   
       else {
          int num_petals = rand() % 10 + 3;
          unsigned char uc_red = static_cast<unsigned char>(red);
@@ -200,6 +209,7 @@ int main(int argc, char** argv)
          unsigned char uc_blue = static_cast<unsigned char>(blue);
          Vertex center = {x, y, { uc_red, uc_green, uc_blue}};
          abs.drawRose(center, num_petals, 300);
+         
       }
     }
 

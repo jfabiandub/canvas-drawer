@@ -245,6 +245,36 @@ void Canvas:: drawRose(Vertex center, int numPetals, int radius){
    end();
 }
 
+void Canvas:: drawPentagon(int x_center, int y_center, int radius){
+   int num_points = 5;
+
+  begin(TRIANGLES);
+
+  float angle = -M_PI / 2;
+  float angle_increment = 2 * M_PI / num_points;
+  std::vector<std::pair<int, int>> points;
+  for (int i = 0; i < num_points; i++) {
+    int x = x_center + (int)(radius * cos(angle));
+    int y = y_center + (int)(radius * sin(angle));
+    points.push_back(std::make_pair(x, y));
+    angle += angle_increment;
+  }
+
+  for (int i = 0; i < num_points; i++) {
+    vertex(points[i].first, points[i].second);
+    vertex(points[(i + 2) % num_points].first, points[(i + 2) % num_points].second);
+    vertex(points[(i + 1) % num_points].first, points[(i + 1) % num_points].second);
+
+    vertex(points[i].first, points[i].second);
+    vertex(points[(i + 3) % num_points].first, points[(i + 3) % num_points].second);
+    vertex(points[(i + 2) % num_points].first, points[(i + 2) % num_points].second);
+  }
+
+  end();
+
+
+}
+
 
 void Canvas::drawRectangle(int x_center, int y_center, int width, int height) {
     // Calculate the coordinates of the top-left and bottom-right corners of the rectangle
@@ -278,6 +308,8 @@ void Canvas::drawRectangle(int x_center, int y_center, int width, int height) {
     vertex(x1, y1);
     end();
 }
+
+
 
 
 

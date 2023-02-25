@@ -61,6 +61,9 @@ namespace agl
       //draws Rose;
       void drawRose(Vertex center, int numPetals, int radius);
 
+      //draw a pentagon
+      void drawPentagon(int x_center, int y_center, int radius);
+
 
       //draws rectangle
       void drawRectangle(int cx, int cy, int width, int height);

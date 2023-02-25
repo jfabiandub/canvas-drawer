@@ -35,7 +35,7 @@ class Image {
 
   virtual ~Image();
 
-  //void cleanUp();
+  void cleanUp();
 
   /** 
    * @brief Load the given filename 
@@ -204,7 +204,7 @@ class Image {
    int myWidth = 0;
    int myHeight = 0;
    int numChannels = 3;
-  // bool isloaded = false;
+   bool isloaded = false;
 };
 }  // namespace agl
 #endif  // AGL_IMAGE_H_
