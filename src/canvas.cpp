@@ -197,10 +197,15 @@ void Canvas::drawTriangle(Vertex a, Vertex b, Vertex c) {
 
 void Canvas:: drawCircle(Vertex p, int r){
    /* find the boundaries of the circle*/
-   int xmin = std::max(p.x - r, 0);
-   int ymin = std::max(p.y - r, 0);
-   int xmax = std::min(p.x + r, _canvas.width() - 1);
-   int ymax = std::min(p.y + r, _canvas.height() - 1);
+   int xmin = p.x - r;
+   int ymin = p.y -r;
+   int xmax = p.x + r;
+   int ymax = p.y + r;
+
+   if (xmin < 0) xmin = 0;
+    if (ymin < 0) ymin = 0;
+    if (xmax >= _canvas.width()) xmax = _canvas.width() - 1;
+    if (ymax >= _canvas.height()) ymax = _canvas.height() - 1;
    r = this->_radius;
 
    for(int i = xmin; i<=xmax; i++){
