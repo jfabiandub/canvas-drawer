@@ -10,9 +10,6 @@ Canvas::Canvas(int w, int h) : _canvas(w, h){
    Image image(w ,h);
    this->_canvas = image;
    
-  /*this->_width = w;
-  this->_height = h;
-  */
 }
 
 Canvas::~Canvas(){ 
@@ -45,6 +42,10 @@ void Canvas::end(){
          drawCircle(myVertices[i], _radius);
       }
    }
+   else if (myPrimType == RECTANGLES && myVertices.size() == 4) {
+        drawRectangle(myVertices[0].x, myVertices[0].y, myVertices[1].x - myVertices[0].x, myVertices[2].y - myVertices[0].y);
+    }
+
    myPrimType = UNDEFINED;   
    myVertices.clear();          
 
@@ -97,14 +98,6 @@ void Canvas::bresenhamLine(Vertex a, Vertex b){
 
    
 void Canvas::drawHighLine(Vertex a, Vertex b){  
-   /*
-   if(a.x <0 || a.x >= _width || a.y <0 || a.y >= _height){
-      return;
-   }
-   if(b.x <0 || b.x >=_width || b.y<0 || b.y >= _height){
-      return;
-   }
-   */
 
    int x = a.x;
    int w = b.x -a.x;   
@@ -234,8 +227,10 @@ void Canvas:: drawRose(Vertex center, int numPetals, int radius){
 
    begin(LINES);
    double theta;
+
+   //based on the rose algorithm 
    for( theta = 0; theta<2 *M_PI; theta +=step ){
-      double x = a * cos(k* theta) * cos(theta);
+      double x = a * cos(k* theta) * cos(theta); 
       double y = a * cos(k * theta) * sin(theta);
 
       vertex(center.x + x, center.y + y);
@@ -243,6 +238,45 @@ void Canvas:: drawRose(Vertex center, int numPetals, int radius){
    }
    end();
 }
+
+
+void Canvas::drawRectangle(int x_center, int y_center, int width, int height) {
+    // Calculate the coordinates of the top-left and bottom-right corners of the rectangle
+    int x1 = x_center - width/2;
+    int y1 = y_center - height/2;
+    int x2 = x_center + width/2;
+    int y2 = y_center + height/2;
+
+    // Draw the four sides of the rectangle using the Bresenham line algorithm
+    // Top side
+    begin(LINES);
+    vertex(x1, y1);
+    vertex(x2, y1);
+    end();
+
+    // Right side
+    begin(LINES);
+    vertex(x2, y1);
+    vertex(x2, y2);
+    end();
+
+    // Bottom side
+    begin(LINES);
+    vertex(x2, y2);
+    vertex(x1, y2);
+    end();
+
+    // Left side
+    begin(LINES);
+    vertex(x1, y2);
+    vertex(x1, y1);
+    end();
+}
+
+
+
+
+
 
 
 

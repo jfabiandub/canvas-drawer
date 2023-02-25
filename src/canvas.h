@@ -61,6 +61,15 @@ namespace agl
       //draws Rose;
       void drawRose(Vertex center, int numPetals, int radius);
 
+      //draws triangles using lines
+      //void drawStar(int c_x, int c_y, int radius);
+
+      //void drawStar(Vertex center, int numPoints, int out_r, int inn_r);
+
+   // void drawRectangle(int cx, int cy, int width, int height);
+
+    void drawRectangle(int cx, int cy, int width, int height);
+
 
 
 
@@ -91,6 +100,8 @@ namespace agl
 
       //draw a circle with given position and radius
       void drawCircle(Vertex x, int a);
+
+
 
 
    };
