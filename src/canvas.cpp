@@ -201,6 +201,11 @@ void Canvas:: drawCircle(Vertex p, int r){
    int ymin = p.y -r;
    int xmax = p.x + r;
    int ymax = p.y + r;
+
+   if (xmin < 0) xmin = 0;
+    if (ymin < 0) ymin = 0;
+    if (xmax >= _canvas.width()) xmax = _canvas.width() - 1;
+    if (ymax >= _canvas.height()) ymax = _canvas.height() - 1;
    r = this->_radius;
 
    for(int i = xmin; i<=xmax; i++){
@@ -210,9 +215,7 @@ void Canvas:: drawCircle(Vertex p, int r){
         // Pixel temp= currentCol;
 
          if(distance <= r){
-            if (i >= 0 && i < _canvas.width() && j >= 0 && j < _canvas.height()) {
             _canvas.set(i, j, currentCol);
-            }
          }
          
       }
