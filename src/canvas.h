@@ -59,22 +59,15 @@ namespace agl
       void setRad(int radius);
 
       //draws Rose;
-      void drawRose(Vertex center, int numPetals, int radius, bool filled);
+      void drawRose(Vertex center, int numPetals, int radius);
 
-      //draws triangles using lines
-      //void drawStar(int c_x, int c_y, int radius);
 
-      //void drawStar(Vertex center, int numPoints, int out_r, int inn_r);
+      //draws rectangle
+      void drawRectangle(int cx, int cy, int width, int height);
 
-   // void drawRectangle(int cx, int cy, int width, int height);
-
-    void drawRectangle(int cx, int cy, int width, int height);
-
-   void drawRoses(float x, float y, float size, int petals, bool filled);
-   // void gradient(int x0, int y0, int x1, int y1, const Pixel& startColor, const Pixel& endColor);
-
-   //void setFill(bool fill);
-
+      //draw Circles
+      void drawCircle(Vertex x, int a);
+    
 
 
    private:
@@ -84,8 +77,6 @@ namespace agl
       std:: vector<Vertex> myVertices;
       int _radius;
      // bool myFill = true;
-     
-   
 
       //draws the line from a to b
       void bresenhamLine(Vertex a, Vertex b);
@@ -98,12 +89,6 @@ namespace agl
 
       //draw a triangle with the 3 vertices
       void drawTriangle(Vertex a, Vertex b, Vertex c);
-
-      //draw a circle with given position and radius
-      void drawCircle(Vertex x, int a);
-
-
-
 
    };
 }
