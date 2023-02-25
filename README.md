@@ -63,8 +63,9 @@ canvas-drawer/build $ ../bin/draw_art
 ## Results
 
 <img width="369" alt="Screenshot 2023-02-25 at 2 18 35 AM" src="https://user-images.githubusercontent.com/102636198/221344372-feed9736-b453-400c-9439-8496c2abd9e5.png">
+<img width="330" alt="Screenshot 2023-02-25 at 4 15 06 AM" src="https://user-images.githubusercontent.com/102636198/221375076-15d7e138-74fd-4363-a32b-06e590f973bd.png">
 
-<img width="299" alt="Screenshot 2023-02-25 at 2 19 16 AM" src="https://user-images.githubusercontent.com/102636198/221344408-e8c73de8-1dbe-4aca-93f8-409c3588c388.png">
+
 
 <img width="438" alt="Screenshot 2023-02-25 at 2 18 54 AM" src="https://user-images.githubusercontent.com/102636198/221344389-0757b88d-21c6-4e4a-890a-71cb9753d2e9.png">
 
