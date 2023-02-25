@@ -59,7 +59,7 @@ namespace agl
       void setRad(int radius);
 
       //draws Rose;
-      void drawRose(Vertex center, int numPetals, int radius);
+      void drawRose(Vertex center, int numPetals, int radius, bool filled);
 
       //draws triangles using lines
       //void drawStar(int c_x, int c_y, int radius);
@@ -70,6 +70,10 @@ namespace agl
 
     void drawRectangle(int cx, int cy, int width, int height);
 
+   void drawRoses(float x, float y, float size, int petals, bool filled);
+   // void gradient(int x0, int y0, int x1, int y1, const Pixel& startColor, const Pixel& endColor);
+
+   //void setFill(bool fill);
 
 
 
@@ -79,11 +83,8 @@ namespace agl
       PrimitiveType myPrimType;
       std:: vector<Vertex> myVertices;
       int _radius;
-      /*
-      int _width;
-      int _height;
-      */
-
+     // bool myFill = true;
+     
    
 
       //draws the line from a to b

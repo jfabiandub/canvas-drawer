@@ -9,6 +9,7 @@ using namespace agl;
 Canvas::Canvas(int w, int h) : _canvas(w, h){
    Image image(w ,h);
    this->_canvas = image;
+   //myFill = true;
    
 }
 
@@ -43,8 +44,8 @@ void Canvas::end(){
       }
    }
    else if (myPrimType == RECTANGLES && myVertices.size() == 4) {
-        drawRectangle(myVertices[0].x, myVertices[0].y, myVertices[1].x - myVertices[0].x, myVertices[2].y - myVertices[0].y);
-    }
+      drawRectangle(myVertices[0].x, myVertices[0].y, myVertices[1].x - myVertices[0].x, myVertices[2].y - myVertices[0].y);
+   }
 
    myPrimType = UNDEFINED;   
    myVertices.clear();          
@@ -220,12 +221,20 @@ void Canvas:: setRad(int radius){
    this->_radius = radius;
 }
 
-void Canvas:: drawRose(Vertex center, int numPetals, int radius){
+void Canvas:: drawRose(Vertex center, int numPetals, int radius, bool filled ){
    double a = radius;
    double k= numPetals;
    double step = 0.01;
 
-   begin(LINES);
+
+   if(filled){
+      begin(TRIANGLES);
+      vertex(center.x, center.y);
+   }
+   else{
+      begin(LINES);
+   }
+
    double theta;
 
    //based on the rose algorithm 
@@ -234,10 +243,67 @@ void Canvas:: drawRose(Vertex center, int numPetals, int radius){
       double y = a * cos(k * theta) * sin(theta);
 
       vertex(center.x + x, center.y + y);
+      //vertex(center.x - x, center.y - y);
+   
+   
+   if(filled){
+     // vertex(center.x, center.y);
+      vertex(center.x + x, center.y + y);
+   }
+   else{
       vertex(center.x - x, center.y - y);
    }
+   }
+   if(filled){
+      vertex(center.x + a, center.y);
+   
+}
    end();
 }
+
+
+void Canvas::drawRoses(float x, float y, float size, int petals, bool filled) {
+    // Calculate the angle between each petal
+    float angle = 2.0 * M_PI / petals;
+
+    // Draw each petal
+    for (int i = 0; i < petals; i++) {
+        float petalAngle = i * angle;
+        float x1 = x + size * cos(petalAngle);
+        float y1 = y + size * sin(petalAngle);
+        float x2 = x + size * cos(petalAngle + angle / 2.0);
+        float y2 = y + size * sin(petalAngle + angle / 2.0);
+        float x3 = x + size * cos(petalAngle + angle);
+        float y3 = y + size * sin(petalAngle + angle);
+
+        // If filled is true, draw a filled petal
+        if (filled) {
+            begin(TRIANGLES);
+            color(currentCol.r, currentCol.g, currentCol.b);
+            vertex(x, y);
+            vertex(x1, y1);
+            vertex(x2, y2);
+            vertex(x, y);
+            vertex(x2, y2);
+            vertex(x3, y3);
+            end();
+        } else {
+            // Otherwise, draw an outlined petal
+            begin(LINES);
+            color(currentCol.r, currentCol.g, currentCol.b);
+            vertex(x1, y1);
+            vertex(x2, y2);
+            vertex(x2, y2);
+            vertex(x3, y3);
+            vertex(x3, y3);
+            vertex(x1, y1);
+            end();
+        }
+    }
+}
+
+
+
 
 
 void Canvas::drawRectangle(int x_center, int y_center, int width, int height) {
@@ -272,6 +338,10 @@ void Canvas::drawRectangle(int x_center, int y_center, int width, int height) {
     vertex(x1, y1);
     end();
 }
+
+//void Canvas::setFill(bool fill){
+  // myFill = fill;
+//}
 
 
 
